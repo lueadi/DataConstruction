@@ -1,0 +1,24 @@
+################################################################################
+# Modified by cxh,20160520
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+C_SRCS += \
+../obu/TrafficLightMain_obu.c 
+
+OBU_OBJS += \
+./obu/TrafficLightMain_obu.o 
+
+C_DEPS += \
+./obu/TrafficLightMain_obu.d 
+
+
+# Each subdirectory must supply rules for building sources it contributes
+obu/%.o: ../obu/%.c
+	@echo 'Building file: $<'
+	@echo 'Invoking: GCC C Compiler'
+	$(CC) -I"$(PRO_DIR)/obu" -I"$(PRO_DIR)/libv2x-yt/Includes" $(EXTRA_CFLAGS) -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o "$@" "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+
